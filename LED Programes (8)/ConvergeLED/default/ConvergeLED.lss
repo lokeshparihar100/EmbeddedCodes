@@ -1,0 +1,226 @@
+
+ConvergeLED.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000154  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  000001a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 0000001b  00000000  00000000  000001c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   000001cd  00000000  00000000  000001e3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 000000fb  00000000  00000000  000003b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   00000179  00000000  00000000  000004ab  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000020  00000000  00000000  00000624  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    000000df  00000000  00000000  00000644  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    00000070  00000000  00000000  00000723  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_ranges 00000090  00000000  00000000  00000793  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 e5       	ldi	r30, 0x54	; 84
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 a8 00 	jmp	0x150	; 0x150 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__heap_end>
+
+00000092 <main>:
+#include<avr/io.h>
+#include<util/delay.h>
+void main()
+{
+  92:	df 93       	push	r29
+  94:	cf 93       	push	r28
+  96:	cd b7       	in	r28, 0x3d	; 61
+  98:	de b7       	in	r29, 0x3e	; 62
+  9a:	a0 97       	sbiw	r28, 0x20	; 32
+  9c:	0f b6       	in	r0, 0x3f	; 63
+  9e:	f8 94       	cli
+  a0:	de bf       	out	0x3e, r29	; 62
+  a2:	0f be       	out	0x3f, r0	; 63
+  a4:	cd bf       	out	0x3d, r28	; 61
+	int i,a[8]={1,2,4,8};
+  a6:	20 e1       	ldi	r18, 0x10	; 16
+  a8:	de 01       	movw	r26, r28
+  aa:	11 96       	adiw	r26, 0x01	; 1
+  ac:	fd 01       	movw	r30, r26
+  ae:	82 2f       	mov	r24, r18
+  b0:	11 92       	st	Z+, r1
+  b2:	8a 95       	dec	r24
+  b4:	e9 f7       	brne	.-6      	; 0xb0 <main+0x1e>
+  b6:	81 e0       	ldi	r24, 0x01	; 1
+  b8:	90 e0       	ldi	r25, 0x00	; 0
+  ba:	9a 83       	std	Y+2, r25	; 0x02
+  bc:	89 83       	std	Y+1, r24	; 0x01
+  be:	82 e0       	ldi	r24, 0x02	; 2
+  c0:	90 e0       	ldi	r25, 0x00	; 0
+  c2:	9c 83       	std	Y+4, r25	; 0x04
+  c4:	8b 83       	std	Y+3, r24	; 0x03
+  c6:	84 e0       	ldi	r24, 0x04	; 4
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	9e 83       	std	Y+6, r25	; 0x06
+  cc:	8d 83       	std	Y+5, r24	; 0x05
+  ce:	88 e0       	ldi	r24, 0x08	; 8
+  d0:	90 e0       	ldi	r25, 0x00	; 0
+  d2:	98 87       	std	Y+8, r25	; 0x08
+  d4:	8f 83       	std	Y+7, r24	; 0x07
+	int b[8]={128,64,32,16};
+  d6:	ce 01       	movw	r24, r28
+  d8:	41 96       	adiw	r24, 0x11	; 17
+  da:	fc 01       	movw	r30, r24
+  dc:	11 92       	st	Z+, r1
+  de:	2a 95       	dec	r18
+  e0:	e9 f7       	brne	.-6      	; 0xdc <main+0x4a>
+  e2:	80 e8       	ldi	r24, 0x80	; 128
+  e4:	90 e0       	ldi	r25, 0x00	; 0
+  e6:	9a 8b       	std	Y+18, r25	; 0x12
+  e8:	89 8b       	std	Y+17, r24	; 0x11
+  ea:	80 e4       	ldi	r24, 0x40	; 64
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	9c 8b       	std	Y+20, r25	; 0x14
+  f0:	8b 8b       	std	Y+19, r24	; 0x13
+  f2:	80 e2       	ldi	r24, 0x20	; 32
+  f4:	90 e0       	ldi	r25, 0x00	; 0
+  f6:	9e 8b       	std	Y+22, r25	; 0x16
+  f8:	8d 8b       	std	Y+21, r24	; 0x15
+  fa:	80 e1       	ldi	r24, 0x10	; 16
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+  fe:	98 8f       	std	Y+24, r25	; 0x18
+ 100:	8f 8b       	std	Y+23, r24	; 0x17
+	DDRC=0XFF;
+ 102:	8f ef       	ldi	r24, 0xFF	; 255
+ 104:	84 bb       	out	0x14, r24	; 20
+ 106:	20 e0       	ldi	r18, 0x00	; 0
+ 108:	30 e0       	ldi	r19, 0x00	; 0
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 10a:	68 ea       	ldi	r22, 0xA8	; 168
+ 10c:	71 e6       	ldi	r23, 0x61	; 97
+	while(1)
+	{
+		for(i=0;i<8;i++)
+		{
+			PORTC=a[i];
+ 10e:	4a ef       	ldi	r20, 0xFA	; 250
+ 110:	50 e0       	ldi	r21, 0x00	; 0
+ 112:	f9 01       	movw	r30, r18
+ 114:	ee 0f       	add	r30, r30
+ 116:	ff 1f       	adc	r31, r31
+ 118:	ea 0f       	add	r30, r26
+ 11a:	fb 1f       	adc	r31, r27
+ 11c:	80 81       	ld	r24, Z
+ 11e:	85 bb       	out	0x15, r24	; 21
+ 120:	cb 01       	movw	r24, r22
+ 122:	01 97       	sbiw	r24, 0x01	; 1
+ 124:	f1 f7       	brne	.-4      	; 0x122 <main+0x90>
+			_delay_ms(100);
+			PORTC=0X00;
+ 126:	15 ba       	out	0x15, r1	; 21
+ 128:	ca 01       	movw	r24, r20
+ 12a:	01 97       	sbiw	r24, 0x01	; 1
+ 12c:	f1 f7       	brne	.-4      	; 0x12a <main+0x98>
+			_delay_ms(1);
+			PORTC=b[i];
+ 12e:	80 89       	ldd	r24, Z+16	; 0x10
+ 130:	85 bb       	out	0x15, r24	; 21
+ 132:	cb 01       	movw	r24, r22
+ 134:	01 97       	sbiw	r24, 0x01	; 1
+ 136:	f1 f7       	brne	.-4      	; 0x134 <main+0xa2>
+			_delay_ms(100);
+			PORTC=0X00;
+ 138:	15 ba       	out	0x15, r1	; 21
+ 13a:	ca 01       	movw	r24, r20
+ 13c:	01 97       	sbiw	r24, 0x01	; 1
+ 13e:	f1 f7       	brne	.-4      	; 0x13c <main+0xaa>
+	int i,a[8]={1,2,4,8};
+	int b[8]={128,64,32,16};
+	DDRC=0XFF;
+	while(1)
+	{
+		for(i=0;i<8;i++)
+ 140:	2f 5f       	subi	r18, 0xFF	; 255
+ 142:	3f 4f       	sbci	r19, 0xFF	; 255
+ 144:	28 30       	cpi	r18, 0x08	; 8
+ 146:	31 05       	cpc	r19, r1
+ 148:	24 f3       	brlt	.-56     	; 0x112 <main+0x80>
+ 14a:	20 e0       	ldi	r18, 0x00	; 0
+ 14c:	30 e0       	ldi	r19, 0x00	; 0
+ 14e:	e1 cf       	rjmp	.-62     	; 0x112 <main+0x80>
+
+00000150 <_exit>:
+ 150:	f8 94       	cli
+
+00000152 <__stop_program>:
+ 152:	ff cf       	rjmp	.-2      	; 0x152 <__stop_program>
