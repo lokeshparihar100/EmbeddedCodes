@@ -1,0 +1,519 @@
+
+SDCard.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000021a  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  0000026e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 00000052  00000000  00000000  0000028e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   0000034c  00000000  00000000  000002e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 000001d4  00000000  00000000  0000062c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   00000329  00000000  00000000  00000800  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000060  00000000  00000000  00000b2c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    00000106  00000000  00000000  00000b8c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    000000ab  00000000  00000000  00000c92  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_ranges 00000078  00000000  00000000  00000d3d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e1       	ldi	r30, 0x1A	; 26
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 7e 00 	call	0xfc	; 0xfc <main>
+  8a:	0c 94 0b 01 	jmp	0x216	; 0x216 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__heap_end>
+
+00000092 <master_ini>:
+#include<avr/io.h>
+#include<avr/interrupt.h>
+#include<util/delay.h>
+
+void master_ini()
+{
+  92:	80 eb       	ldi	r24, 0xB0	; 176
+  94:	87 bb       	out	0x17, r24	; 23
+	DDRB=(1<<PB4)|(1<<PB5)|(1<<PB7);
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR1);
+  96:	82 e5       	ldi	r24, 0x52	; 82
+  98:	8d b9       	out	0x0d, r24	; 13
+}
+  9a:	08 95       	ret
+
+0000009c <master_tx>:
+void master_tx(char data)
+{
+  9c:	8f b9       	out	0x0f, r24	; 15
+	SPDR=data;
+	while(!(SPSR & (1<<SPIF)));
+  9e:	77 9b       	sbis	0x0e, 7	; 14
+  a0:	fe cf       	rjmp	.-4      	; 0x9e <master_tx+0x2>
+}
+  a2:	08 95       	ret
+
+000000a4 <master_rx>:
+char master_rx()
+{
+  a4:	8f ef       	ldi	r24, 0xFF	; 255
+  a6:	8f b9       	out	0x0f, r24	; 15
+	SPDR=0XFF;
+	while(!(SPSR & (1<<SPIF)));
+  a8:	77 9b       	sbis	0x0e, 7	; 14
+  aa:	fe cf       	rjmp	.-4      	; 0xa8 <master_rx+0x4>
+	return SPDR;
+  ac:	8f b1       	in	r24, 0x0f	; 15
+}
+  ae:	08 95       	ret
+
+000000b0 <sd_talk>:
+
+void sd_talk(char cmd, long arg)
+{	
+  b0:	80 64       	ori	r24, 0x40	; 64
+	DDRB=(1<<PB4)|(1<<PB5)|(1<<PB7);
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR1);
+}
+void master_tx(char data)
+{
+	SPDR=data;
+  b2:	8f b9       	out	0x0f, r24	; 15
+	while(!(SPSR & (1<<SPIF)));
+  b4:	77 9b       	sbis	0x0e, 7	; 14
+  b6:	fe cf       	rjmp	.-4      	; 0xb4 <sd_talk+0x4>
+
+void sd_talk(char cmd, long arg)
+{	
+	cmd=cmd|0x40;
+	master_tx(cmd);
+	master_tx(arg>>24);
+  b8:	87 2f       	mov	r24, r23
+  ba:	bb 27       	eor	r27, r27
+  bc:	87 fd       	sbrc	r24, 7
+  be:	b0 95       	com	r27
+  c0:	9b 2f       	mov	r25, r27
+  c2:	ab 2f       	mov	r26, r27
+	DDRB=(1<<PB4)|(1<<PB5)|(1<<PB7);
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR1);
+}
+void master_tx(char data)
+{
+	SPDR=data;
+  c4:	8f b9       	out	0x0f, r24	; 15
+	while(!(SPSR & (1<<SPIF)));
+  c6:	77 9b       	sbis	0x0e, 7	; 14
+  c8:	fe cf       	rjmp	.-4      	; 0xc6 <sd_talk+0x16>
+void sd_talk(char cmd, long arg)
+{	
+	cmd=cmd|0x40;
+	master_tx(cmd);
+	master_tx(arg>>24);
+	master_tx(arg>>16);
+  ca:	cb 01       	movw	r24, r22
+  cc:	bb 27       	eor	r27, r27
+  ce:	97 fd       	sbrc	r25, 7
+  d0:	b0 95       	com	r27
+  d2:	ab 2f       	mov	r26, r27
+	DDRB=(1<<PB4)|(1<<PB5)|(1<<PB7);
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR1);
+}
+void master_tx(char data)
+{
+	SPDR=data;
+  d4:	8f b9       	out	0x0f, r24	; 15
+	while(!(SPSR & (1<<SPIF)));
+  d6:	77 9b       	sbis	0x0e, 7	; 14
+  d8:	fe cf       	rjmp	.-4      	; 0xd6 <sd_talk+0x26>
+{	
+	cmd=cmd|0x40;
+	master_tx(cmd);
+	master_tx(arg>>24);
+	master_tx(arg>>16);
+	master_tx(arg>>8);
+  da:	bb 27       	eor	r27, r27
+  dc:	77 fd       	sbrc	r23, 7
+  de:	ba 95       	dec	r27
+  e0:	a7 2f       	mov	r26, r23
+  e2:	96 2f       	mov	r25, r22
+  e4:	85 2f       	mov	r24, r21
+	DDRB=(1<<PB4)|(1<<PB5)|(1<<PB7);
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR1);
+}
+void master_tx(char data)
+{
+	SPDR=data;
+  e6:	8f b9       	out	0x0f, r24	; 15
+	while(!(SPSR & (1<<SPIF)));
+  e8:	77 9b       	sbis	0x0e, 7	; 14
+  ea:	fe cf       	rjmp	.-4      	; 0xe8 <sd_talk+0x38>
+	DDRB=(1<<PB4)|(1<<PB5)|(1<<PB7);
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR1);
+}
+void master_tx(char data)
+{
+	SPDR=data;
+  ec:	4f b9       	out	0x0f, r20	; 15
+	while(!(SPSR & (1<<SPIF)));
+  ee:	77 9b       	sbis	0x0e, 7	; 14
+  f0:	fe cf       	rjmp	.-4      	; 0xee <sd_talk+0x3e>
+	DDRB=(1<<PB4)|(1<<PB5)|(1<<PB7);
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR1);
+}
+void master_tx(char data)
+{
+	SPDR=data;
+  f2:	85 e9       	ldi	r24, 0x95	; 149
+  f4:	8f b9       	out	0x0f, r24	; 15
+	while(!(SPSR & (1<<SPIF)));
+  f6:	77 9b       	sbis	0x0e, 7	; 14
+  f8:	fe cf       	rjmp	.-4      	; 0xf6 <sd_talk+0x46>
+	master_tx(arg>>24);
+	master_tx(arg>>16);
+	master_tx(arg>>8);
+	master_tx(arg);
+	master_tx(0x95);
+}
+  fa:	08 95       	ret
+
+000000fc <main>:
+
+void main()
+{
+  fc:	0f 93       	push	r16
+  fe:	1f 93       	push	r17
+ 100:	df 93       	push	r29
+ 102:	cf 93       	push	r28
+ 104:	cd b7       	in	r28, 0x3d	; 61
+ 106:	de b7       	in	r29, 0x3e	; 62
+ 108:	64 97       	sbiw	r28, 0x14	; 20
+ 10a:	0f b6       	in	r0, 0x3f	; 63
+ 10c:	f8 94       	cli
+ 10e:	de bf       	out	0x3e, r29	; 62
+ 110:	0f be       	out	0x3f, r0	; 63
+ 112:	cd bf       	out	0x3d, r28	; 61
+	DDRA=0XFF;
+ 114:	8f ef       	ldi	r24, 0xFF	; 255
+ 116:	8a bb       	out	0x1a, r24	; 26
+#include<avr/interrupt.h>
+#include<util/delay.h>
+
+void master_ini()
+{
+	DDRB=(1<<PB4)|(1<<PB5)|(1<<PB7);
+ 118:	80 eb       	ldi	r24, 0xB0	; 176
+ 11a:	87 bb       	out	0x17, r24	; 23
+	SPCR=(1<<SPE)|(1<<MSTR)|(1<<SPR1);
+ 11c:	82 e5       	ldi	r24, 0x52	; 82
+ 11e:	8d b9       	out	0x0d, r24	; 13
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 120:	04 ec       	ldi	r16, 0xC4	; 196
+ 122:	19 e0       	ldi	r17, 0x09	; 9
+ 124:	c8 01       	movw	r24, r16
+ 126:	01 97       	sbiw	r24, 0x01	; 1
+ 128:	f1 f7       	brne	.-4      	; 0x126 <main+0x2a>
+	DDRA=0XFF;
+	int i;
+	char a[20];
+	master_ini();
+	_delay_ms(10);
+	sd_talk(0,0);
+ 12a:	40 e0       	ldi	r20, 0x00	; 0
+ 12c:	50 e0       	ldi	r21, 0x00	; 0
+ 12e:	60 e0       	ldi	r22, 0x00	; 0
+ 130:	70 e0       	ldi	r23, 0x00	; 0
+ 132:	80 e0       	ldi	r24, 0x00	; 0
+ 134:	0e 94 58 00 	call	0xb0	; 0xb0 <sd_talk>
+ 138:	c8 01       	movw	r24, r16
+ 13a:	01 97       	sbiw	r24, 0x01	; 1
+ 13c:	f1 f7       	brne	.-4      	; 0x13a <main+0x3e>
+ 13e:	20 e0       	ldi	r18, 0x00	; 0
+ 140:	30 e0       	ldi	r19, 0x00	; 0
+	_delay_ms(10);
+
+	for( i=0;i<20;i++)
+	{
+		PORTB=(1<<PB4);
+ 142:	70 e1       	ldi	r23, 0x10	; 16
+ 144:	44 ec       	ldi	r20, 0xC4	; 196
+ 146:	59 e0       	ldi	r21, 0x09	; 9
+		_delay_ms(10);
+		PORTB=0B11101111;
+ 148:	6f ee       	ldi	r22, 0xEF	; 239
+	sd_talk(0,0);
+	_delay_ms(10);
+
+	for( i=0;i<20;i++)
+	{
+		PORTB=(1<<PB4);
+ 14a:	78 bb       	out	0x18, r23	; 24
+ 14c:	ca 01       	movw	r24, r20
+ 14e:	01 97       	sbiw	r24, 0x01	; 1
+ 150:	f1 f7       	brne	.-4      	; 0x14e <main+0x52>
+		_delay_ms(10);
+		PORTB=0B11101111;
+ 152:	68 bb       	out	0x18, r22	; 24
+ 154:	ca 01       	movw	r24, r20
+ 156:	01 97       	sbiw	r24, 0x01	; 1
+ 158:	f1 f7       	brne	.-4      	; 0x156 <main+0x5a>
+	master_ini();
+	_delay_ms(10);
+	sd_talk(0,0);
+	_delay_ms(10);
+
+	for( i=0;i<20;i++)
+ 15a:	2f 5f       	subi	r18, 0xFF	; 255
+ 15c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 15e:	24 31       	cpi	r18, 0x14	; 20
+ 160:	31 05       	cpc	r19, r1
+ 162:	99 f7       	brne	.-26     	; 0x14a <main+0x4e>
+		_delay_ms(10);
+		PORTB=0B11101111;
+		_delay_ms(10);
+	}
+
+	sd_talk(0,0);
+ 164:	40 e0       	ldi	r20, 0x00	; 0
+ 166:	50 e0       	ldi	r21, 0x00	; 0
+ 168:	60 e0       	ldi	r22, 0x00	; 0
+ 16a:	70 e0       	ldi	r23, 0x00	; 0
+ 16c:	80 e0       	ldi	r24, 0x00	; 0
+ 16e:	0e 94 58 00 	call	0xb0	; 0xb0 <sd_talk>
+ 172:	20 e0       	ldi	r18, 0x00	; 0
+ 174:	30 e0       	ldi	r19, 0x00	; 0
+	SPDR=data;
+	while(!(SPSR & (1<<SPIF)));
+}
+char master_rx()
+{
+	SPDR=0XFF;
+ 176:	6f ef       	ldi	r22, 0xFF	; 255
+	sd_talk(0,0);
+	while(1)
+	{ 
+	  for(i=0;i<20;i++)
+	  {
+		a[i]=master_rx();
+ 178:	ae 01       	movw	r20, r28
+ 17a:	4f 5f       	subi	r20, 0xFF	; 255
+ 17c:	5f 4f       	sbci	r21, 0xFF	; 255
+	SPDR=data;
+	while(!(SPSR & (1<<SPIF)));
+}
+char master_rx()
+{
+	SPDR=0XFF;
+ 17e:	6f b9       	out	0x0f, r22	; 15
+	while(!(SPSR & (1<<SPIF)));
+ 180:	77 9b       	sbis	0x0e, 7	; 14
+ 182:	fe cf       	rjmp	.-4      	; 0x180 <main+0x84>
+	return SPDR;
+ 184:	9f b1       	in	r25, 0x0f	; 15
+	sd_talk(0,0);
+	while(1)
+	{ 
+	  for(i=0;i<20;i++)
+	  {
+		a[i]=master_rx();
+ 186:	fa 01       	movw	r30, r20
+ 188:	e2 0f       	add	r30, r18
+ 18a:	f3 1f       	adc	r31, r19
+ 18c:	90 83       	st	Z, r25
+		if(a[i-1]==0&&a[i]==1)
+ 18e:	fe 01       	movw	r30, r28
+ 190:	e2 0f       	add	r30, r18
+ 192:	f3 1f       	adc	r31, r19
+ 194:	80 81       	ld	r24, Z
+ 196:	88 23       	and	r24, r24
+ 198:	11 f4       	brne	.+4      	; 0x19e <main+0xa2>
+ 19a:	91 30       	cpi	r25, 0x01	; 1
+ 19c:	41 f0       	breq	.+16     	; 0x1ae <main+0xb2>
+	}
+
+	sd_talk(0,0);
+	while(1)
+	{ 
+	  for(i=0;i<20;i++)
+ 19e:	2f 5f       	subi	r18, 0xFF	; 255
+ 1a0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1a2:	24 31       	cpi	r18, 0x14	; 20
+ 1a4:	31 05       	cpc	r19, r1
+ 1a6:	5c f3       	brlt	.-42     	; 0x17e <main+0x82>
+ 1a8:	20 e0       	ldi	r18, 0x00	; 0
+ 1aa:	30 e0       	ldi	r19, 0x00	; 0
+ 1ac:	e8 cf       	rjmp	.-48     	; 0x17e <main+0x82>
+		if(a[i-1]==0&&a[i]==1)
+		goto jump;
+	  }
+	}
+	jump:
+	PORTA=0X02;
+ 1ae:	82 e0       	ldi	r24, 0x02	; 2
+ 1b0:	8b bb       	out	0x1b, r24	; 27
+	sd_talk(1,0);
+ 1b2:	40 e0       	ldi	r20, 0x00	; 0
+ 1b4:	50 e0       	ldi	r21, 0x00	; 0
+ 1b6:	60 e0       	ldi	r22, 0x00	; 0
+ 1b8:	70 e0       	ldi	r23, 0x00	; 0
+ 1ba:	81 e0       	ldi	r24, 0x01	; 1
+ 1bc:	0e 94 58 00 	call	0xb0	; 0xb0 <sd_talk>
+ 1c0:	20 e0       	ldi	r18, 0x00	; 0
+ 1c2:	30 e0       	ldi	r19, 0x00	; 0
+	SPDR=data;
+	while(!(SPSR & (1<<SPIF)));
+}
+char master_rx()
+{
+	SPDR=0XFF;
+ 1c4:	6f ef       	ldi	r22, 0xFF	; 255
+	sd_talk(1,0);
+	while(1)
+	{ 
+	  for(i=0;i<20;i++)
+	  {
+		a[i]=master_rx();
+ 1c6:	ae 01       	movw	r20, r28
+ 1c8:	4f 5f       	subi	r20, 0xFF	; 255
+ 1ca:	5f 4f       	sbci	r21, 0xFF	; 255
+	SPDR=data;
+	while(!(SPSR & (1<<SPIF)));
+}
+char master_rx()
+{
+	SPDR=0XFF;
+ 1cc:	6f b9       	out	0x0f, r22	; 15
+	while(!(SPSR & (1<<SPIF)));
+ 1ce:	77 9b       	sbis	0x0e, 7	; 14
+ 1d0:	fe cf       	rjmp	.-4      	; 0x1ce <main+0xd2>
+	return SPDR;
+ 1d2:	9f b1       	in	r25, 0x0f	; 15
+	sd_talk(1,0);
+	while(1)
+	{ 
+	  for(i=0;i<20;i++)
+	  {
+		a[i]=master_rx();
+ 1d4:	fa 01       	movw	r30, r20
+ 1d6:	e2 0f       	add	r30, r18
+ 1d8:	f3 1f       	adc	r31, r19
+ 1da:	90 83       	st	Z, r25
+		if(a[i-1]==0&&a[i]==1)
+ 1dc:	fe 01       	movw	r30, r28
+ 1de:	e2 0f       	add	r30, r18
+ 1e0:	f3 1f       	adc	r31, r19
+ 1e2:	80 81       	ld	r24, Z
+ 1e4:	88 23       	and	r24, r24
+ 1e6:	11 f4       	brne	.+4      	; 0x1ec <main+0xf0>
+ 1e8:	91 30       	cpi	r25, 0x01	; 1
+ 1ea:	41 f0       	breq	.+16     	; 0x1fc <main+0x100>
+	jump:
+	PORTA=0X02;
+	sd_talk(1,0);
+	while(1)
+	{ 
+	  for(i=0;i<20;i++)
+ 1ec:	2f 5f       	subi	r18, 0xFF	; 255
+ 1ee:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1f0:	24 31       	cpi	r18, 0x14	; 20
+ 1f2:	31 05       	cpc	r19, r1
+ 1f4:	5c f3       	brlt	.-42     	; 0x1cc <main+0xd0>
+ 1f6:	20 e0       	ldi	r18, 0x00	; 0
+ 1f8:	30 e0       	ldi	r19, 0x00	; 0
+ 1fa:	e8 cf       	rjmp	.-48     	; 0x1cc <main+0xd0>
+		if(a[i-1]==0&&a[i]==1)
+		goto P;
+	  }
+	}
+	P:
+	PORTA=0XF0;
+ 1fc:	80 ef       	ldi	r24, 0xF0	; 240
+ 1fe:	8b bb       	out	0x1b, r24	; 27
+}
+ 200:	64 96       	adiw	r28, 0x14	; 20
+ 202:	0f b6       	in	r0, 0x3f	; 63
+ 204:	f8 94       	cli
+ 206:	de bf       	out	0x3e, r29	; 62
+ 208:	0f be       	out	0x3f, r0	; 63
+ 20a:	cd bf       	out	0x3d, r28	; 61
+ 20c:	cf 91       	pop	r28
+ 20e:	df 91       	pop	r29
+ 210:	1f 91       	pop	r17
+ 212:	0f 91       	pop	r16
+ 214:	08 95       	ret
+
+00000216 <_exit>:
+ 216:	f8 94       	cli
+
+00000218 <__stop_program>:
+ 218:	ff cf       	rjmp	.-2      	; 0x218 <__stop_program>
